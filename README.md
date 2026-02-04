@@ -186,28 +186,40 @@ Hasil ini menunjukkan bahwa penyerang berhasil melakukan ARP spoofing dan mempos
 
 Jawablah pertanyaan-pertanyaan di bawah ini.
 Berapa banyak paket ARP dari alamat MAC gateway yang teramati?
+ketik perintah di wireshark di pencarian dan lihat di bagian displayed bawah  : arp && arp.src.proto_ipv4 == 192.168.10.1 && eth.src == 02:aa:bb:cc:00:01 
+<img width="1366" height="608" alt="image" src="https://github.com/user-attachments/assets/f4a318ed-8471-4fe2-8aa3-1ddbbb7b9e31" />
 
-10
+
+jawaban 10
 
 Memeriksa
 Alamat MAC apa yang digunakan penyerang untuk menyamar sebagai gateway?
+ketik di pencarian wire shark : arp.opcode == 2 && arp.src.proto_ipv4 == 192.168.10.1 && eth.src 
+<img width="1360" height="624" alt="image" src="https://github.com/user-attachments/assets/0da42a99-264d-44fd-a272-b04c3ebf0831" />
 
-02:fe:fe:fe:55:55
+jawaban : 02:fe:fe:fe:55:55
 
 Memeriksa
 Berapa banyak balasan ARP gratis yang diamati untuk 192.168.10.1?
+cara hampir sama ketik di pencarian wire shark : arp.isgratuitous
+lihat ip yang sama seperti  192.168.10.1 ada berapa lihat di tampilan wireshark 
+<img width="1360" height="624" alt="image" src="https://github.com/user-attachments/assets/eae99123-6a1d-400f-8ed0-e4c6a81fd421" />
 
-2
+jawaban : 2
 
 Memeriksa
 Berapa banyak alamat MAC unik yang mengklaim IP yang sama (192.168.10.1)?
+cara hampir sama seperti yang di atas 
+di pencarian wire shark : arp.isgratuitous
 
-2
+jawaban : 2
 
 Memeriksa
 Berapa total paket ARP spoofing yang teramati dari penyerang?
+dengan mengetik di pencarian wireshark : arp.duplicate-address-detected || arp.duplicate-address-frame
+lalu lihat detail displayed paling bawah sebelah pojok kanan : 14
 
-14
+jawaban : 14
 
 # Mengungkap Praktik DNS Spoofing
 Protokol DNS yang Disederhanakan
