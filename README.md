@@ -409,12 +409,24 @@ Kredensial POST teramati (teks biasa).
 Jawablah pertanyaan-pertanyaan di bawah ini.
 Berapa banyak permintaan POST yang teramati untuk domain kami corp-login.acme-corp.local?
 
-1
 
-Memeriksa
+caranya ketik pencarian di wireshark : http && ip.src == 192.168.10.10 && ip.dst == 192.168.10.55
+maka akan tampil halaman utama coba anda lihat ada length info menujukan adanya GET DAN POST
+FOKUS yang di cari adalah POST nya  berjumlah : 1 
+
+
+jawaban 1
+
+
+
 Apa kata sandi korban yang ditemukan dalam teks biasa setelah serangan ssl stripping berhasil? 
+ketik query di wireshar pencarian : http.request.method == "POST"
+lihat pada bagian di  http protocol dan fokus di tetx yang bernama : Secret123!  
 
-Secret123!
+<img width="1366" height="609" alt="image" src="https://github.com/user-attachments/assets/1109af61-016e-44a8-8c29-6fea05ec5469" />
+
+
+JAWABAN : Secret123!
 
 # Kesimpulan & Ringkasan Ruangan
 Di ruangan ini, kami mengeksplorasi beberapa serangan man-in-the-middle umum yang dirangkai dalam sebuah skenario dan cara mengidentifikasi jejaknya dalam lalu lintas jaringan. 
