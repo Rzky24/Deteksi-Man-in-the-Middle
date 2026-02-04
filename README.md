@@ -314,18 +314,30 @@ Mari kita lanjutkan ke tugas berikutnya: memahami mengapa SSL stripping digunaka
 
 Jawablah pertanyaan-pertanyaan di bawah ini.
 Berapa banyak respons DNS yang diamati untuk domain corp-login.acme-corp.local?
+cara nya buka pencarian di wireshark : dns.flags.response == 1 && dns.qry.name == "corp-login.acme-corp.local"
+yang mana sbelumnya adalah menghapus beberapa yang awal query nya : :dns.flags.response == 1 && ip.src == 8.8.8.8 && dns.qry.name == "corp-login.acme-corp.local"
+kita hapus bagian : ip.src == 8.8.8.8 && dan finaly query hasil akhirnya : dns.flags.response == 1 && dns.qry.name == "corp-login.acme-corp.local"
+lihat displayed pojok kanan bawah : 211
 
-211
+<img width="1354" height="707" alt="image" src="https://github.com/user-attachments/assets/d1da9405-6341-4e58-8820-d4f031b7ce88" />
+
+
+jawaban : 211
 
 Memeriksa
 Berapa banyak permintaan DNS yang teramati dari IP selain 8.8.8.8?
+hampir sama caranya dengan query : dns.flags.response == 1 && ip.src != 8.8.8.8 && dns.qry.name == "corp-login.acme-corp.local"
+lihat tampilan wireshark / displayed paling bawagh sebelah pojok kanan : 2
 
-2
+jawaban : 2
 
 Memeriksa
 Alamat IP apa yang dikembalikan oleh respons DNS palsu penyerang untuk domain tersebut?
+caranya sama seperti yang di atas dengan pencarian query : dns.flags.response == 1 && ip.src != 8.8.8.8 && dns.qry.name == "corp-login.acme-corp.local"
+cuman yang ini anda lihat di bagian source di kotak wireshark halaman utama : 192.168.10.55
 
-192.168.10.55
+
+jawaban : 192.168.10.55
 
 # Mendeteksi Aksi Penyadapan SSL
 SSL stripping adalah teknik man-in-the-middle di mana penyerang mencegat dan memodifikasi lalu lintas untuk menghapus atau mencegah enkripsi TLS antara klien dan server. Hal ini menyebabkan klien berkomunikasi melalui HTTP, bukan HTTPS. Penyerang mempertahankan sesi yang aman (HTTPS) dengan server sambil meneruskan HTTP biasa ke korban, sehingga memungkinkan penyadapan dan pengambilan kredensial.
